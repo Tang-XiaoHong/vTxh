@@ -138,4 +138,3 @@ $\int\sqrt{a^2-x^2}dx=\frac{a^2}{2}\arcsin\frac{x}{a}+\frac{x}{2}\sqrt{a^2-x^2}+
 
 $\int\frac{1}{1+\cos x}dx=\tan\frac{x}{2}+C$
 
-# this is lele speaking
