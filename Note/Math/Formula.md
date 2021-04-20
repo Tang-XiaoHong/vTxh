@@ -137,3 +137,5 @@ $\int\frac{dx}{\sqrt{x^2-a^2}}dx=ln|x+\sqrt{x^2-a^2}|+C$
 $\int\sqrt{a^2-x^2}dx=\frac{a^2}{2}\arcsin\frac{x}{a}+\frac{x}{2}\sqrt{a^2-x^2}+C$
 
 $\int\frac{1}{1+\cos x}dx=\tan\frac{x}{2}+C$
+
+# this is lele speaking
