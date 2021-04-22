@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "注册";
+}
+@using (Html.BeginForm("submit", "register", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        用户名:@Html.TextBox("userName", "12018051098txh", new { data_id = "1", data_theme = "2", @class = "viewTest" })
+    </div>
+    <div>
+        密码:@Html.Password("password")
+    </div>
+    <div>
+        性别:@Html.RadioButtonList("sex", db.bll.listHelper.getSex(), new { data_id = "1" })
+    </div>
+    <div>
+        介绍:@Html.TextArea("introduction")
+    </div>
+    <div>
+        省份:@Html.DropDownList("province", db.bll.listHelper.getTestProvince())
+    </div>
+    <div>
+
+        城市:@Html.ListBox("city", db.bll.listHelper.getTestCity())
+    </div>
+    <div>
+        头像：<input type="file" name="img" />
+    </div>
+    <input type="submit" value="提交" />
+}

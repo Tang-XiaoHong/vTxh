@@ -11,19 +11,17 @@ namespace simpleBookSell.Filters
         //完成登录检测
         public void OnAuthorization(AuthorizationContext filterContext)
         {
-            string controllerName = filterContext.Controller.ToString();
-            string actionName = filterContext.ActionDescriptor.ActionName;
-            if (controllerName == "simpleBookSell.Controllers.loginController")
-                return;
+            //string controllerName = filterContext.Controller.ToString();
+            //string actionName = filterContext.ActionDescriptor.ActionName;
+            //if (controllerName == "simpleBookSell.Controllers.loginController")
+            //    return;
             //未登录
-            if (filterContext.HttpContext.Session["isLogin"] == null)
-            {
-                string url = filterContext.HttpContext.Request.RawUrl;
-                filterContext.HttpContext.Session["toUrl"] = url;
-                filterContext.Result = new RedirectResult("/login/Index");
-            }
-
-            
+            //if (filterContext.HttpContext.Session["isLogin"] == null)
+            //{
+            //    string url = filterContext.HttpContext.Request.RawUrl;
+            //    filterContext.HttpContext.Session["toUrl"] = url;
+            //    filterContext.Result = new RedirectResult("/login/Index");
+            //}
         }
     }
 

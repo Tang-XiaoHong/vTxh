@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace db
 {
@@ -16,8 +10,10 @@ namespace db
         private DbConnection _efconn;
 
         //获取所用的连接对象
-        public DbConnection efConn {
-            get {
+        public DbConnection efConn
+        {
+            get
+            {
                 if (_efconn == null)
                     _efconn = this.Database.Connection;
                 return _efconn;

@@ -130,6 +130,7 @@
     <Compile Include="Controllers\bookController.cs" />
     <Compile Include="Controllers\loginController.cs" />
     <Compile Include="Controllers\storeController.cs" />
+    <Compile Include="Controllers\registerController.cs" />
     <Compile Include="Filters\authorAttribute.cs" />
     <Compile Include="Filters\myActionAttribute.cs" />
     <Compile Include="Filters\myErrorAttribute.cs" />
@@ -187,10 +188,13 @@
     <Content Include="Views\ActionResult\Txh.cshtml" />
     <Content Include="Views\ActionResult\DisplayCheapBooks.cshtml" />
     <Content Include="Views\ActionResult\DisplayExpenBooks.cshtml" />
+    <Content Include="Views\register\Index.cshtml" />
+    <Content Include="Views\register\show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -210,6 +214,9 @@
       <Project>{4613a835-882f-47d8-8d63-fea97b8728d1}</Project>
       <Name>dbLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
