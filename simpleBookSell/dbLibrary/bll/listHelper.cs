@@ -46,6 +46,24 @@ namespace db.bll
             list.Add(new SelectListItem() { Text = "跑步", Value = "jog" });
             return list;
         }
+        public static List<SelectListItem> getBookTypes()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem() { Text = "计算机", Value = "computer" });
+            list.Add(new SelectListItem() { Text = "文学", Value = "literature" });
+            list.Add(new SelectListItem() { Text = "地理", Value = "geography" });
+
+            return list;
+        }
+        public static List<SelectListItem> getBookTags()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem() { Text = "促销", Value = "sale" });
+            list.Add(new SelectListItem() { Text = "畅销", Value = "best" });
+            list.Add(new SelectListItem() { Text = "清仓", Value = "clear" });
+
+            return list;
+        }
 
 
     }

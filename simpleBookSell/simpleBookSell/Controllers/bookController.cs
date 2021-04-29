@@ -16,8 +16,14 @@ namespace simpleBookSell.Controllers
         public ActionResult bookList()
         {
             List<db.Books> list = db.bll.books.getBooks();
-
             return View(list);
+        }
+
+        //图书详情
+        public ActionResult Detail(int id)
+        {
+            db.Books entry = db.bll.books.getEntry(id);
+            return View(entry);
         }
 
         //图书新增界面展示
@@ -48,6 +54,20 @@ namespace simpleBookSell.Controllers
         [HttpPost]
         public ActionResult insertEntry(db.Books entry)
         {
+            //视图中需要特殊处理的数据（多选和文件）
+            if (Request["BookTag"] != null)
+            {
+                entry.BookTag = Request["BookTag"].ToString();
+            }
+            if (Request.Files.Count > 0 && Request.Files[0].FileName != "")
+            {
+                string savePath = "/upload/"
+                    + DateTime.Now.ToString("yyyyMMddhhmmss")
+                    + Request.Files[0].FileName;
+                Request.Files[0].SaveAs(Server.MapPath(savePath));
+                entry.BookCoverUrl = savePath;
+            }
+
             db.bll.books.insert(entry);
             return RedirectToAction("bookList");
         }
@@ -68,7 +88,6 @@ namespace simpleBookSell.Controllers
             return RedirectToAction("bookList");
         }
 
-
         //图书修改界面展示-方法2
         [HttpGet]
         public ActionResult updateEntry(int id)
@@ -76,6 +95,7 @@ namespace simpleBookSell.Controllers
             db.Books entry = db.bll.books.getEntry(id);
             return View(entry);
         }
+
         //保存修改图书数据-方法2
         [HttpPost]
         public ActionResult updateEntry(db.Books entry)
@@ -91,10 +111,25 @@ namespace simpleBookSell.Controllers
             db.Books entry = db.bll.books.getEntry(id);
             return View(entry);
         }
+
         //保存修改图书数据-方法3
         [HttpPost]
         public ActionResult update3(db.Books entry)
         {
+            //视图中需要特殊处理的数据(多选和文件)
+            if (Request["BookTag"] != null)
+            {
+                entry.BookTag = Request["BookTag"].ToString();
+            }
+            if (Request.Files.Count > 0 && Request.Files[0].FileName != "")
+            {
+                string savePath = "/upload/"
+                    + DateTime.Now.ToString("yyyyMMddhhmmss")
+                    + Request.Files[0].FileName;
+                Request.Files[0].SaveAs(Server.MapPath(savePath));
+                entry.BookCoverUrl = savePath;
+            }
+
             db.bll.books.update3(entry);
             return RedirectToAction("bookList");
         }

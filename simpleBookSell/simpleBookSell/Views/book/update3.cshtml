@@ -6,10 +6,10 @@
 
 <h2>修改-3</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("update3", "book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Books</h4>
         <hr />
@@ -40,6 +40,25 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BookType, db.bll.listHelper.getBookTypes())
+                @Html.ValidationMessageFor(model => model.BookType)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BookTag, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxListFor(model => model.BookTag, db.bll.listHelper.getBookTags())
+                @Html.ValidationMessageFor(model => model.BookTag)
+            </div>
+        </div>
+
+        <img src="@Model.BookCoverUrl" style="height:80px;" />
+        @Html.HiddenFor(a => a.BookCoverUrl)
+        <input type="file" name="BookCoverUrl" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

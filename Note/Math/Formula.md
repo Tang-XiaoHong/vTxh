@@ -6,6 +6,8 @@
 
 [不定积分](#不定积分)
 
+[定积分](#定积分)
+
 ### 三角函数
 
 #### 倍角公式与半角公式
@@ -149,3 +151,7 @@ $\int1+lnxdx=xlnx+C$
 $\int\frac{1}{\sin x\cos^4x}dx=\int\frac{\sin^2x+\cos^2x}{\sin x\cos^4x}dx$
 
 $\int\frac{1}{\sqrt{1+x^2}}=ln(x+\sqrt{1+x^2})+C$
+
+### 定积分
+
+#### test

@@ -12,14 +12,15 @@ namespace db
     using System;
     using System.Collections.Generic;
     
-    public partial class Books
+    public partial class sv_Orderslyh
     {
+        public int OrderID { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> Num { get; set; }
         public int BookId { get; set; }
         public string AuthorName { get; set; }
         public string Title { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string BookCoverUrl { get; set; }
-        public string BookType { get; set; }
-        public string BookTag { get; set; }
     }
 }
