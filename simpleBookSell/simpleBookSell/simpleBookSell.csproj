@@ -190,6 +190,7 @@
     <Content Include="Views\ActionResult\DisplayExpenBooks.cshtml" />
     <Content Include="Views\register\Index.cshtml" />
     <Content Include="Views\register\show.cshtml" />
+    <Content Include="Views\book\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

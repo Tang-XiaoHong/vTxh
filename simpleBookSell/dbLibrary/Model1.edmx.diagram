@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="mvcStudyModel.Books" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcStudyModel.Orders" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="mvcStudyModel.sv_Orders" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mvcStudyModel.AspNet_SqlCacheTablesForChangeNotification" PointX="5.375" PointY="0.75" Width="1.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
