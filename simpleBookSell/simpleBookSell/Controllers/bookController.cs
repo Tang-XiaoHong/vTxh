@@ -12,11 +12,30 @@ namespace simpleBookSell.Controllers
         // GET: book
         // 首页展示图书列表
         [author]
-        [OutputCache(CacheProfile = "mySqlCache")]
+        //[OutputCache(CacheProfile = "mySqlCache")]
         public ActionResult bookList()
         {
             List<db.Books> list = db.bll.books.getBooks();
             return View(list);
+        }
+
+        [HttpPost]
+        public ActionResult bookList(string str)
+        {
+            string bookId = Request["detail.BookId"].ToString();
+            string price = Request["detail.price"].ToString();
+
+            List<string> bookIdList = bookId.Split(',').ToList<string>();
+            List<string> priceList = price.Split(',').ToList<string>();
+            Dictionary<string, string> dicTags = new Dictionary<string, string>();
+            foreach (var item in bookIdList)
+            {
+                string bookTag = (Request["detail.BookTag." + item] == null) ?
+                    "" : Request["detail.BookTag." + item].ToString();
+                dicTags.Add(item, bookTag);
+            }
+            db.bll.books.batchUpdate(bookIdList, priceList, dicTags);
+            return RedirectToAction("bookList");
         }
 
         //图书详情

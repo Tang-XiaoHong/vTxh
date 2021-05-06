@@ -103,6 +103,20 @@ namespace db.bll
             List<Books> list = dc.Books.Where(a => a.Price >= 20).ToList<Books>();
             return list;
         }
-
+        public static void batchUpdate(
+            List<string> bookIdList,
+            List<string> priceList,
+            Dictionary<string, string> dicTags)
+        {
+            dbEntities dc = new dbEntities();
+            for (int iIndex = 0; iIndex < bookIdList.Count; ++iIndex)
+            {
+                int bookId = Convert.ToInt32(bookIdList[iIndex]);
+                Books entry = dc.Books.SingleOrDefault(a => a.BookId == bookId);
+                entry.Price = Convert.ToDecimal(priceList[iIndex]);
+                entry.BookTag = dicTags[bookIdList[iIndex]];
+            }
+            dc.SaveChanges();
+        }
     }
 }

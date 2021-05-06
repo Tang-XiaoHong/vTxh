@@ -11,7 +11,7 @@ namespace simpleBookSell.Controllers
     {
         // 首页展示图书列表
         [author]
-        [OutputCache(Duration = 60)]
+        //[OutputCache(Duration = 60)]
         public ActionResult bookList()
         {
             List<db.Books> list = db.bll.books.getBooks();
@@ -21,7 +21,7 @@ namespace simpleBookSell.Controllers
 
         // 购书
         [HttpGet]
-        [OutputCache(CacheProfile = "myCache")]
+        //[OutputCache(CacheProfile = "myCache")]
         public ActionResult order(int id)
         {
             db.Books entry = db.bll.books.getEntry(id);

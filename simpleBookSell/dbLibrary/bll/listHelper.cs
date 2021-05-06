@@ -64,7 +64,27 @@ namespace db.bll
 
             return list;
         }
+        public static List<SelectListItem> getBookTags(string oldValue)
+        {
+            if (oldValue == null)
+            {
+                oldValue = "";
+            }
 
+            List<string> selectedList = oldValue.Split(',').ToList<string>();
+
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem() { Text = "促销", Value = "sale" });
+            list.Add(new SelectListItem() { Text = "畅销", Value = "best" });
+            list.Add(new SelectListItem() { Text = "清仓", Value = "clear" });
+
+            foreach (var item in list)
+            {
+                if (selectedList.Contains(item.Value))
+                    item.Selected = true;
+            }
+            return list;
+        }
 
     }
 }
