@@ -55,7 +55,7 @@
                     @Html.TextBox("detail.price", item.Price, new { style = "width:50px;" })
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BookType)
+                    @Html.DropDownList("detail.BookType." + item.BookId, db.bll.listHelper.getBookTypes(item.BookType))
                 </td>
                 <td>
                     @Html.CheckBoxList("detail.BookTag." + item.BookId, db.bll.listHelper.getBookTags(item.BookTag))

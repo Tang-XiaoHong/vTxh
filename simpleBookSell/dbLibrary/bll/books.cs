@@ -106,7 +106,8 @@ namespace db.bll
         public static void batchUpdate(
             List<string> bookIdList,
             List<string> priceList,
-            Dictionary<string, string> dicTags)
+            Dictionary<string, string> dicTags,
+            Dictionary<string, string> dicType)
         {
             dbEntities dc = new dbEntities();
             for (int iIndex = 0; iIndex < bookIdList.Count; ++iIndex)
@@ -115,6 +116,7 @@ namespace db.bll
                 Books entry = dc.Books.SingleOrDefault(a => a.BookId == bookId);
                 entry.Price = Convert.ToDecimal(priceList[iIndex]);
                 entry.BookTag = dicTags[bookIdList[iIndex]];
+                entry.BookType = dicType[bookIdList[iIndex]];
             }
             dc.SaveChanges();
         }

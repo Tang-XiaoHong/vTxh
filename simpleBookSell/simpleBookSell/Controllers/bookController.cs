@@ -28,13 +28,17 @@ namespace simpleBookSell.Controllers
             List<string> bookIdList = bookId.Split(',').ToList<string>();
             List<string> priceList = price.Split(',').ToList<string>();
             Dictionary<string, string> dicTags = new Dictionary<string, string>();
+            Dictionary<string, string> dicType = new Dictionary<string, string>();
             foreach (var item in bookIdList)
             {
                 string bookTag = (Request["detail.BookTag." + item] == null) ?
                     "" : Request["detail.BookTag." + item].ToString();
+                string bookType = (Request["detail.BookType." + item] == null) ?
+                    "" : Request["detail.BookType." + item].ToString();
                 dicTags.Add(item, bookTag);
+                dicType.Add(item, bookType);
             }
-            db.bll.books.batchUpdate(bookIdList, priceList, dicTags);
+            db.bll.books.batchUpdate(bookIdList, priceList, dicTags, dicType);
             return RedirectToAction("bookList");
         }
 

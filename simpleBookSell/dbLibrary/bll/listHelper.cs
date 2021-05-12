@@ -55,6 +55,27 @@ namespace db.bll
 
             return list;
         }
+        public static List<SelectListItem> getBookTypes(string oldValue)
+        {
+            if (oldValue == null)
+            {
+                oldValue = "";
+            }
+
+            List<string> selectedList = oldValue.Split(',').ToList<string>();
+
+            List<SelectListItem> list = new List<SelectListItem>();
+            list.Add(new SelectListItem() { Text = "计算机", Value = "computer" });
+            list.Add(new SelectListItem() { Text = "文学", Value = "literature" });
+            list.Add(new SelectListItem() { Text = "地理", Value = "geography" });
+
+            foreach (var item in list)
+            {
+                if (selectedList.Contains(item.Value))
+                    item.Selected = true;
+            }
+            return list;
+        }
         public static List<SelectListItem> getBookTags()
         {
             List<SelectListItem> list = new List<SelectListItem>();
