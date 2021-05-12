@@ -1,19 +1,39 @@
-﻿@{
+﻿@model db.view.userInfo
+@{
     ViewBag.Title = "注册";
 }
 @using (Html.BeginForm("submit", "register", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary(true, "乐乐")
     <div>
-        用户名:@Html.TextBox("userName", "12018051098txh", new { data_id = "1", data_theme = "2", @class = "viewTest" })
+        用户名:@Html.TextBoxFor(a => a.userName)
+        @Html.ValidationMessageFor(a => a.userName)
     </div>
     <div>
-        密码:@Html.Password("password")
+        密码:@Html.TextBox("password")
     </div>
     <div>
-        性别:@Html.RadioButtonList("sex", db.bll.listHelper.getSex(), new { data_id = "1" })
+        性别:@Html.RadioButtonList("sex", db.bll.listHelper.getSex())
     </div>
     <div>
-        介绍:@Html.TextArea("introduction")
+        年龄:@Html.TextBoxFor(a => a.age)
+        @Html.ValidationMessageFor(a => a.age)
+    </div>
+    <div>
+        身份证:@Html.TextBoxFor(a => a.identityID)
+        @Html.ValidationMessageFor(a => a.identityID)
+    </div>
+    <div>
+        再次输入身份证:@Html.TextBoxFor(a => a.ConfirmidentityID)
+        @Html.ValidationMessageFor(a => a.ConfirmidentityID)
+    </div>
+    <div>
+        电话:@Html.TextBoxFor(a => a.telephone)
+        @Html.ValidationMessageFor(a => a.telephone)
+    </div>
+    <div>
+        邮箱:@Html.TextBoxFor(a => a.email)
+        @Html.ValidationMessageFor(a => a.email)
     </div>
     <div>
         省份:@Html.DropDownList("province", db.bll.listHelper.getTestProvince())
@@ -23,7 +43,19 @@
         城市:@Html.ListBox("city", db.bll.listHelper.getTestCity())
     </div>
     <div>
+        介绍:@Html.TextArea("introduction")
+    </div>
+    <div>
         头像：<input type="file" name="img" />
     </div>
     <input type="submit" value="提交" />
 }
+<div id="About">
+    @Ajax.ActionLink("click", "About", new AjaxOptions
+{
+    UpdateTargetId = "About1",
+    InsertionMode = InsertionMode.Replace,
+    HttpMethod = "get"
+})
+</div>
+<div id="About1"></div>

@@ -4,11 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7eceac438d2d49738526ca6fe520118d" Name="Diagram1">
-        <EntityTypeShape EntityType="mvcStudyModel.Books" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcStudyModel.Orders" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcStudyModel.sv_Orders" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="mvcStudyModel.AspNet_SqlCacheTablesForChangeNotification" PointX="5.375" PointY="0.75" Width="1.5" />
+      <Diagram DiagramId="07e58bdd413b4b45b3c9c5d075aa911a" Name="Diagram1">
+        <EntityTypeShape EntityType="db.bs_Dept" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db.bs_Empl" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="db.Orders" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="db.sv_Orders" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="db.Books" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

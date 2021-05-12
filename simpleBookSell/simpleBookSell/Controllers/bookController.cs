@@ -164,5 +164,16 @@ namespace simpleBookSell.Controllers
             return RedirectToAction("bookList");
         }
 
+        [HttpPost]
+        public ActionResult batchDelete(string selected)
+        {
+            selected = selected.Substring(0, selected.Length - 1);
+            List<string> booklist = selected.Split(',').ToList();
+            db.bll.books.batchDelete(booklist);
+            var result = new { result = "" };
+            return Json(result);
+        }
+
+
     }
 }

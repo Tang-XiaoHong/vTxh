@@ -4,15 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="mvcStudyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="AspNet_SqlCacheTablesForChangeNotification">
-          <Key>
-            <PropertyRef Name="tableName" />
-          </Key>
-          <Property Name="tableName" Type="nvarchar" MaxLength="450" Nullable="false" />
-          <Property Name="notificationCreated" Type="datetime" Nullable="false" />
-          <Property Name="changeId" Type="int" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="db.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Books">
           <Key>
             <PropertyRef Name="BookId" />
@@ -21,9 +13,32 @@
           <Property Name="AuthorName" Type="nvarchar" MaxLength="50" />
           <Property Name="Title" Type="nvarchar" MaxLength="160" />
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="BookCoverUrl" Type="nvarchar" MaxLength="1024" />
           <Property Name="BookType" Type="nvarchar" MaxLength="50" />
           <Property Name="BookTag" Type="nvarchar" MaxLength="50" />
+          <Property Name="BookCoverUrl" Type="nvarchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="bs_Dept">
+          <Key>
+            <PropertyRef Name="deptCode" />
+          </Key>
+          <Property Name="rowID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deptCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="deptName" Type="nvarchar" MaxLength="50" />
+          <Property Name="remark" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="bs_Empl">
+          <Key>
+            <PropertyRef Name="emplCode" />
+          </Key>
+          <Property Name="rowID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emplCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="emplName" Type="nvarchar" MaxLength="50" />
+          <Property Name="deptCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="10" />
+          <Property Name="sex" Type="nchar" MaxLength="1" />
+          <Property Name="IDCard" Type="nvarchar" MaxLength="18" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="remark" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -49,36 +64,10 @@
           <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
           <Property Name="BookCoverUrl" Type="nvarchar" MaxLength="1024" />
         </EntityType>
-        <!--生成过程中发现错误:
-警告 6002: 表/视图“mvcStudy.dbo.sv_Orderslyh”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
-        <EntityType Name="sv_Orderslyh">
-          <Key>
-            <PropertyRef Name="OrderID" />
-            <PropertyRef Name="BookId" />
-          </Key>
-          <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="1024" />
-          <Property Name="Num" Type="int" />
-          <Property Name="BookId" Type="int" Nullable="false" />
-          <Property Name="AuthorName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Title" Type="nvarchar" MaxLength="160" />
-          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
-          <Property Name="BookCoverUrl" Type="nvarchar" MaxLength="1024" />
-        </EntityType>
-        <Function Name="AspNet_SqlCachePollingStoredProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="AspNet_SqlCacheQueryRegisteredTablesStoredProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="AspNet_SqlCacheRegisterTableStoredProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="tableName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="AspNet_SqlCacheUnRegisterTableStoredProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="tableName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="AspNet_SqlCacheUpdateChangeIdStoredProcedure" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="tableName" Type="nvarchar" Mode="In" />
-        </Function>
-        <EntityContainer Name="mvcStudyModelStoreContainer">
-          <EntitySet Name="AspNet_SqlCacheTablesForChangeNotification" EntityType="Self.AspNet_SqlCacheTablesForChangeNotification" Schema="dbo" store:Type="Tables" />
+        <EntityContainer Name="dbStoreContainer">
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_Dept" EntityType="Self.bs_Dept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_Empl" EntityType="Self.bs_Empl" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sv_Orders" EntityType="Self.sv_Orders" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -92,34 +81,40 @@
     [sv_Orders].[BookCoverUrl] AS [BookCoverUrl]
     FROM [dbo].[sv_Orders] AS [sv_Orders]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="sv_Orderslyh" EntityType="Self.sv_Orderslyh" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [sv_Orderslyh].[OrderID] AS [OrderID], 
-    [sv_Orderslyh].[Address] AS [Address], 
-    [sv_Orderslyh].[Num] AS [Num], 
-    [sv_Orderslyh].[BookId] AS [BookId], 
-    [sv_Orderslyh].[AuthorName] AS [AuthorName], 
-    [sv_Orderslyh].[Title] AS [Title], 
-    [sv_Orderslyh].[Price] AS [Price], 
-    [sv_Orderslyh].[BookCoverUrl] AS [BookCoverUrl]
-    FROM [dbo].[sv_Orderslyh] AS [sv_Orderslyh]</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="mvcStudyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Books">
+      <Schema Namespace="db" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bs_Dept" EntityType="db.bs_Dept" />
+          <EntitySet Name="bs_Empl" EntityType="db.bs_Empl" />
+          <EntitySet Name="Orders" EntityType="db.Orders" />
+          <EntitySet Name="sv_Orders" EntityType="db.sv_Orders" />
+          <EntitySet Name="Books" EntityType="db.Books" />
+        </EntityContainer>
+        <EntityType Name="bs_Dept">
           <Key>
-            <PropertyRef Name="BookId" />
+            <PropertyRef Name="deptCode" />
           </Key>
-          <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
-          <Property Name="BookCoverUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="BookType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BookTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="rowID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deptCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="bs_Empl">
+          <Key>
+            <PropertyRef Name="emplCode" />
+          </Key>
+          <Property Name="rowID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emplCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="emplName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deptCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IDCard" Type="String" MaxLength="18" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="remark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -143,128 +138,86 @@
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="BookCoverUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Books" EntityType="Self.Books" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="sv_Orders" EntityType="Self.sv_Orders" />
-          <EntitySet Name="AspNet_SqlCacheTablesForChangeNotification" EntityType="mvcStudyModel.AspNet_SqlCacheTablesForChangeNotification" />
-          <EntitySet Name="sv_Orderslyh" EntityType="mvcStudyModel.sv_Orderslyh" />
-          <FunctionImport Name="AspNet_SqlCachePollingStoredProcedure" ReturnType="Collection(mvcStudyModel.AspNet_SqlCachePollingStoredProcedure_Result)" />
-          <FunctionImport Name="AspNet_SqlCacheQueryRegisteredTablesStoredProcedure" ReturnType="Collection(String)" />
-          <FunctionImport Name="AspNet_SqlCacheRegisterTableStoredProcedure">
-            <Parameter Name="tableName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="AspNet_SqlCacheUnRegisterTableStoredProcedure">
-            <Parameter Name="tableName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="AspNet_SqlCacheUpdateChangeIdStoredProcedure">
-            <Parameter Name="tableName" Mode="In" Type="String" />
-          </FunctionImport>
-        </EntityContainer>
-        <EntityType Name="AspNet_SqlCacheTablesForChangeNotification">
+        <EntityType Name="Books">
           <Key>
-            <PropertyRef Name="tableName" />
-          </Key>
-          <Property Name="tableName" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
-          <Property Name="notificationCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="changeId" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sv_Orderslyh">
-          <Key>
-            <PropertyRef Name="OrderID" />
             <PropertyRef Name="BookId" />
           </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="Num" Type="Int32" />
-          <Property Name="BookId" Type="Int32" Nullable="false" />
+          <Property Name="BookId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AuthorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="BookType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BookTag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="BookCoverUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="AspNet_SqlCachePollingStoredProcedure_Result">
-          <Property Type="String" Name="tableName" Nullable="false" MaxLength="450" />
-          <Property Type="Int32" Name="changeId" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="mvcStudyModelStoreContainer" CdmEntityContainer="dbEntities">
-          <EntitySetMapping Name="Books">
-            <EntityTypeMapping TypeName="mvcStudyModel.Books">
-              <MappingFragment StoreEntitySet="Books">
-                <ScalarProperty Name="BookTag" ColumnName="BookTag" />
-                <ScalarProperty Name="BookType" ColumnName="BookType" />
-                <ScalarProperty Name="BookId" ColumnName="BookId" />
-                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="BookCoverUrl" ColumnName="BookCoverUrl" />
+        <EntityContainerMapping StorageEntityContainer="dbStoreContainer" CdmEntityContainer="dbEntities">
+          <EntitySetMapping Name="bs_Dept">
+            <EntityTypeMapping TypeName="db.bs_Dept">
+              <MappingFragment StoreEntitySet="bs_Dept">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="deptName" ColumnName="deptName" />
+                <ScalarProperty Name="deptCode" ColumnName="deptCode" />
+                <ScalarProperty Name="rowID" ColumnName="rowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_Empl">
+            <EntityTypeMapping TypeName="db.bs_Empl">
+              <MappingFragment StoreEntitySet="bs_Empl">
+                <ScalarProperty Name="remark" ColumnName="remark" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="deptCode" ColumnName="deptCode" />
+                <ScalarProperty Name="emplName" ColumnName="emplName" />
+                <ScalarProperty Name="emplCode" ColumnName="emplCode" />
+                <ScalarProperty Name="rowID" ColumnName="rowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="mvcStudyModel.Orders">
+            <EntityTypeMapping TypeName="db.Orders">
               <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sv_Orders">
-            <EntityTypeMapping TypeName="mvcStudyModel.sv_Orders">
+            <EntityTypeMapping TypeName="db.sv_Orders">
               <MappingFragment StoreEntitySet="sv_Orders">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="BookId" ColumnName="BookId" />
-                <ScalarProperty Name="Num" ColumnName="Num" />
-                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="BookCoverUrl" ColumnName="BookCoverUrl" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNet_SqlCacheTablesForChangeNotification">
-            <EntityTypeMapping TypeName="mvcStudyModel.AspNet_SqlCacheTablesForChangeNotification">
-              <MappingFragment StoreEntitySet="AspNet_SqlCacheTablesForChangeNotification">
-                <ScalarProperty Name="changeId" ColumnName="changeId" />
-                <ScalarProperty Name="notificationCreated" ColumnName="notificationCreated" />
-                <ScalarProperty Name="tableName" ColumnName="tableName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sv_Orderslyh">
-            <EntityTypeMapping TypeName="mvcStudyModel.sv_Orderslyh">
-              <MappingFragment StoreEntitySet="sv_Orderslyh">
                 <ScalarProperty Name="BookCoverUrl" ColumnName="BookCoverUrl" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
-                <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AspNet_SqlCachePollingStoredProcedure" FunctionName="mvcStudyModel.Store.AspNet_SqlCachePollingStoredProcedure">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="mvcStudyModel.AspNet_SqlCachePollingStoredProcedure_Result">
-                <ScalarProperty Name="tableName" ColumnName="tableName" />
-                <ScalarProperty Name="changeId" ColumnName="changeId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AspNet_SqlCacheQueryRegisteredTablesStoredProcedure" FunctionName="mvcStudyModel.Store.AspNet_SqlCacheQueryRegisteredTablesStoredProcedure" />
-          <FunctionImportMapping FunctionImportName="AspNet_SqlCacheRegisterTableStoredProcedure" FunctionName="mvcStudyModel.Store.AspNet_SqlCacheRegisterTableStoredProcedure" />
-          <FunctionImportMapping FunctionImportName="AspNet_SqlCacheUnRegisterTableStoredProcedure" FunctionName="mvcStudyModel.Store.AspNet_SqlCacheUnRegisterTableStoredProcedure" />
-          <FunctionImportMapping FunctionImportName="AspNet_SqlCacheUpdateChangeIdStoredProcedure" FunctionName="mvcStudyModel.Store.AspNet_SqlCacheUpdateChangeIdStoredProcedure" />
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="db.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="BookCoverUrl" ColumnName="BookCoverUrl" />
+                <ScalarProperty Name="BookTag" ColumnName="BookTag" />
+                <ScalarProperty Name="BookType" ColumnName="BookType" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="AuthorName" ColumnName="AuthorName" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -279,7 +232,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />

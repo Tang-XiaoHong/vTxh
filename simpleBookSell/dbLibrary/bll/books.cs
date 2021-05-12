@@ -120,5 +120,22 @@ namespace db.bll
             }
             dc.SaveChanges();
         }
+        //批量删除
+        public static void batchDelete(List<string> bookList)
+        {
+            dbEntities dc = new dbEntities();
+            for (int iIndex = 0; iIndex < bookList.Count; ++iIndex)
+            {
+                if (bookList[iIndex] == "")
+                {
+                    break;
+                }
+                int bookId = Convert.ToInt32(bookList[iIndex]);
+                Books entry = dc.Books.SingleOrDefault(a => a.BookId == bookId);
+                dc.Books.Remove(entry);
+            }
+            dc.SaveChanges();
+        }
+
     }
 }
